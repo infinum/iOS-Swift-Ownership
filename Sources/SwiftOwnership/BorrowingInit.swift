@@ -1,4 +1,4 @@
-public class BorrowingInit {
+public final class BorrowingInit {
     private let first: Int
 
     public init(test: Test) {

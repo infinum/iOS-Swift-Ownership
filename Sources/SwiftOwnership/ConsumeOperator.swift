@@ -1,4 +1,4 @@
-public class ConsumeOperator {
+public final class ConsumeOperator {
     private let first: Int
 
     public init(test: consuming Test) {

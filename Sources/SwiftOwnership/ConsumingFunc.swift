@@ -1,4 +1,4 @@
-public class ConsumingFunc {
+public final class ConsumingFunc {
     private var test: Test!
 
     public init() {

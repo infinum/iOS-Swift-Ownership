@@ -1,4 +1,4 @@
-class X {
+final class X {
     func testMe() {
 
     }
