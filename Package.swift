@@ -15,7 +15,14 @@ let package = Package(
         .package(url: "https://github.com/ordo-one/package-benchmark", .upToNextMajor(from: "1.0.0"))
     ],
     targets: [
-        .target(name: "SwiftOwnership"),
+        .target(
+            name: "SwiftOwnership",
+            swiftSettings: [
+                .unsafeFlags(["-disable-availability-checking"]),
+                .enableExperimentalFeature("StaticExclusiveOnly"),
+                .enableExperimentalFeature("RawLayout")
+            ]
+        ),
         .testTarget(
             name: "SwiftOwnershipTests",
             dependencies: ["SwiftOwnership"]),
@@ -84,6 +91,26 @@ let package = Package(
             plugins: [
                 .plugin(name: "BenchmarkPlugin", package: "package-benchmark")
             ]
+        ),
+        .executableTarget(
+            name: "NonCopyable",
+            dependencies: [
+                .product(name: "Benchmark", package: "package-benchmark"),
+                "SwiftOwnership"
+            ],
+            path: "Benchmarks/Benchmarks/NonCopyable",
+            swiftSettings: [.unsafeFlags(["-disable-availability-checking"])],
+            plugins: [
+                .plugin(name: "BenchmarkPlugin", package: "package-benchmark")
+            ]
+        ),
+        .executableTarget(
+            name: "FindLongest",
+            dependencies: [
+                "SwiftOwnership"
+            ],
+            path: "Benchmarks/Benchmarks/FindLongest",
+            swiftSettings: [.unsafeFlags(["-disable-availability-checking"])]
         )
     ]
 )
