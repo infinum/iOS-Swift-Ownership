@@ -1,16 +1,12 @@
-final class X {
-    func testMe() {
-
-    }
-}
+final class X {}
 
 let x = X()
 
 public func doSomethingWithoutRetain() {
-    x.testMe()
+    return
 }
 
 public func doSomethingWithRetain() {
     let retained = Unmanaged<X>.passRetained(x)
-    x.testMe()
+    return
 }
